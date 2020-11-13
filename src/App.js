@@ -1,39 +1,52 @@
 import React from 'react'
 
+const ana = {
+  name: 'Ana',
+  age: 27,
+  shopping: [
+    { name: 'Notebook', price: 'R$ 2500' },
+    { name: 'Geladeira', price: 'R$ 3000' },
+    { name: 'Smartphone', price: 'R$ 1500' },
+  ],
+  status: true,
+}
+
+const bryan = {
+  name: 'Bryan',
+  age: 25,
+  shopping: [
+    { name: 'Notebook', price: 'R$ 2500' },
+    { name: 'Geladeira', price: 'R$ 3000' },
+    { name: 'Smartphone', price: 'R$ 1500' },
+    { name: 'Guitarra', price: 'R$ 3500' },
+  ],
+  status: false,
+};
+
 const App = () => {
+  const { name, age, shopping, status } = ana;
 
-  const users = [
-    {
-      name: "Bryan Alves",
-      age: "25",
-    },
-    {
-      name: "Ana Salles",
-      age: "24",
-    },
-    {
-      name: "Giovana Salles",
-      age: "15",
-    },
-  ]
+  const values = shopping.map(({ price }) => {
+    return Number(price.replace('R$', ''))
+  })
 
-  const path = 'https://www.origamid.com/'
+  const total = values.reduce((accumulator, currentValue) => accumulator + currentValue)
 
   return (
-    <>
-      <h1>App React</h1>
-      <a href={path} target="_blank">Origamid</a>
-      {
-        users.map(({ name, age }) => {
-          return (
-            <>
-              <p>Nome: {name}</p>
-              <p>Idade: {age}</p>
-              <p>Maioridade: {age >= 18 ? 'Maior' : 'Menor'}</p>
-            </>
-          )
-        })}
-    </>
+    <div style={{ fontWeight: "500" }}>
+      <p>Nome: {name}</p>
+      <p>Idade: {age}</p>
+      <p>
+        Situação:{' '}
+        <span style={{color: status ? 'green' : 'red',}}>
+          {status ? 'Ativa' : 'Inativa'}
+        </span>
+      </p>
+      <p>Total gasto: {total}</p>
+      {total >= 10000 &&
+        <p>Você está gastando demais</p>
+      }
+    </div>
   );
 };
 
