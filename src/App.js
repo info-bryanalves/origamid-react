@@ -1,16 +1,17 @@
 import React from 'react'
+import Footer from './Footer'
+import Form from './Form'
+
+import Header from './Header'
 
 const App = () => {
 
-  function handleClick(event) {
-    console.log(event.target)
-  }
-
   return (
-    <div>
-      <button onClick={handleClick}>Clique aqui 1</button>
-      <button onClick={({target}) => console.log(target)}>Clique aqui 2</button>
-    </div>
+    <React.Fragment>
+      <Header />
+      <Form />
+      <Footer />
+    </React.Fragment>
   )
 
 }
